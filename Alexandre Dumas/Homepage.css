@@ -1,0 +1,25 @@
+main {
+    display: flex;
+    justify-content: center;
+}
+
+main > .gallery {
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+
+main > .gallery > img {
+    height: 400px;
+    width: 300px;
+    padding: 5px;
+    border: 1px solid white;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+main > .gallery > img:hover {
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}

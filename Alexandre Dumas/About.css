@@ -1,0 +1,15 @@
+h2 {
+    text-align: center;
+    text-decoration: underline;
+}
+h3 {
+    text-decoration: underline;
+    padding-left: 15px;
+}
+
+
+p {
+    padding: 15px;
+    border: 2px solid navy;
+    background-color: aliceblue;
+}

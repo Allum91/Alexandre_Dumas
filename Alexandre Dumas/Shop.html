@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="Stylesheet.css">
+        <link rel="stylesheet" href="Shop.css">
+        <title> Shop</title>
+    </head>
+    <body>
+        <div class="header">
+            <h1> Alexandre Dumas</h1>
+            <h3> Famous French Novelist and Playwrite</h3>
+        </div>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="Homepage.html"> Homepage</a>
+                    </li>
+                    <li>
+                        <a href="About.html"> About the Author</a>
+                    </li>
+                    <li>
+                        <a href="Books.html"> Books</a>
+                    </li>
+                    <li>
+                        <a href="Shop.html"> Shop</a>
+                    </li>
+                </ul>
+            </nav>
+        <main>
+            <div class="link">
+                <h2> Please click on the link below to buy Alexandre Dumas Novels</h2>
+                <a href="https://www.amazon.co.uk/s?k=alexandre+dumas&rh=n%3A266239%2Cp_lbr_books_authors_browse-bin%3AAlexandre+Dumas&dc&qid=1610551463&rnid=535007031&ref=sr_nr_p_lbr_books_authors_browse-bin_1"> 
+                Click Here</a>
+            </div>
+            <h4>Enter info if you wish to receive discounts and promotions on novels!</h4>
+                
+            
+             <form class="messages" onsubmit="return submitMessage(event);">
+                <!--First Name-->
+                <label for="firstName"> First Name</label>  
+                <input type="text" name="firstName" id="firstName" required>
+                <!--Last Name-->
+                <label for="lastName"> Last Name</label>
+                <input type="text" name="lastName" id="lastName" required>
+                <!--Email-->
+                <label for="email"> Email</label>
+                <input type="email" name="email" id="email" required>
+                <!--Clear button-->
+                <button> Clear</button>
+                <!-- Submit button-->
+                <input type="submit" value="Sign Up">
+            </form>
+
+        </main>
+
+        <script>
+            function deleteMessages() {
+                if(window.sessionStorage.getItem("messages")) {
+                    window.sessionStorage.removeItem("messages");
+                }
+
+                renderMessages();
+            }
+
+            function submitMessage(event) {
+                event.preventDefault();
+                const firstName = document.getElementById("firstName").value;
+                const lastName = document.getElementById("lastName").value;
+                const email = document.getElementById("email").value;
+
+
+                const messageObject = {
+                    firstName, lastName, email
+                };
+                
+                console.log(messageObject);
+
+                    let currentMessages = [];
+
+                    if (window.sessionStorage.getItem("messages")) {
+                        currentMessages = 
+                        JSON.parse(
+                            window.sessionStorage.getItem("messages")
+                        );
+                    }
+
+                    currentMessages.push(messageObject);
+                    window.sessionStorage.setItem(
+                        "messages",
+                        JSON.stringify(currentMessages)
+                    );
+
+                    renderMessages();
+                
+            }
+
+            function renderMessages() {
+                let currentMessages = [];
+
+                if (window.sessionStorage.getItem("messages")) {
+                    currentMessages = 
+                    JSON.parse(
+                        window.sessionStorage.getItem("messages")
+                    );
+                }
+
+                let listItems = [];
+                for(let i= 0; i < currentMessages.length; i++) {
+                    let listItem = "";
+                    const currentMessage = currentMessages[i];
+                    listItem += `<dt>${currentMessage.firstName} - ${currentMessage.lastName};</dt>`
+                    listItem += `<dd>${currentMessage.email}</dd>`
+                    listItem =+ `<br>`;
+                    listItems.push(listItem);
+
+                }
+
+                let descList = document.getElementById("currentMessages");
+                descList.innerHTML = listItems.join("");
+            }
+
+            
+        </script>
+       
+
+            <footer> 
+                <div class="form-title-section">
+                    <h4> Names & Emails</h4>
+                    <button onclick="deleteMessages();"> Clear</button>
+                </div>
+                <div class="form-wrapper">
+
+                </div>
+               <dl id="currentMessages">
+
+               </dl>
+                
+                Copyright © Alexander Allum 2021
+
+            </footer>
+
+           
+    </body>
